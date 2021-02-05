@@ -8,9 +8,9 @@ app.use(express.json())
 //托管静态文件
 app.use('/uploads',express.static(__dirname+'/uploads'))
 // 数据库的连接
-require('./plugins/db')(app)
+require('./plugins/db.js')(app)
 //路由的连接
-require('./router/admin')(app)
+require('./router/admin/index.js')(app)
 
 app.listen(3000,()=>{
   console.log('http://localhost:3000')
