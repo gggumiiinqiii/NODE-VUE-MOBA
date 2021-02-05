@@ -18,7 +18,7 @@
         <el-input v-model="model.name"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button  type="primary" native-type="submit">{{saveoredit}}</el-button>
+        <el-button  type="primary" native-type="submit">保存</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -33,15 +33,6 @@
       return {
         model:{},
         parents:[]
-      }
-    },
-    computed:{
-      saveoredit(){
-        if(this.id){
-          return '编辑'
-        }else {
-          return '保存'
-        }
       }
     },
     methods:{
