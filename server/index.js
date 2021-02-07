@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express()
+app.set('secret','ghj123456')
 //使用跨域
 app.use(require('cors')())
 //在admin/index.js await 中req.body使用
