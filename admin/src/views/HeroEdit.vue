@@ -15,6 +15,7 @@
             <el-upload
               class="avatar-uploader"
               :action="$http.defaults.baseURL+'/upload'"
+              :headers="getAuthHeaders()"
               :show-file-list="false"
               :on-success="afterupload">
               <img v-if="model.avator" :src="model.avator" class="avatar">
@@ -87,6 +88,7 @@
                 <el-upload
                   class="avatar-uploader"
                   :action="$http.defaults.baseURL+'/upload'"
+                  :headers="getAuthHeaders()"
                   :show-file-list="false"
                   :on-success="res=>item.icon=res.url">
                   <img v-if="item.icon" :src="item.icon" class="avatar">
