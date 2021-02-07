@@ -18,9 +18,17 @@ import AdList from '../views/AdList.vue'
 
 import AdminUserEdit from '../views/AdminUserEdit.vue'
 import AdminUserList from '../views/AdminUserList.vue'
+
+import Login from '../views/Login.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:'/login',
+    name:'Login',
+    component:Login,
+    meta:{isPublic:true}
+  },
   {
     path: '/',
     name: 'Main',
@@ -120,9 +128,17 @@ const routes = [
     ]
   },
 ]
-
 const router = new VueRouter({
   routes
 })
-
+router.beforeEach((to,from,next)=>{
+  if(!to.meta.isPublic && !localStorage.token) {
+    Vue.prototype.$message({
+      type:"error",
+      message:'请先登录'
+    })
+    return next('/login')
+  }
+  next()
+})
 export default router
