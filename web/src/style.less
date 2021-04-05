@@ -1,0 +1,468 @@
+//reset
+
+*{
+  box-sizing: border-box;
+  // 取消搜索框和按钮的高亮
+  outline: none;
+}
+html {
+  font-size: 13px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.2em;
+  background: #f1f1f1;
+}
+
+a {
+  color: #999;
+}
+
+
+//定义颜色colors(Maps)映射
+@primary: #de9e3f;
+@white:#fff;
+@light:#f9f9f9;
+@grey:#999;
+@dark-1:#343440;
+@dark:#222;
+@black:#000;
+.text-primary {
+  color: @primary;
+}
+.text-white {
+  color: @white;
+}
+.text-light {
+  color: @light;
+}
+.text-grey {
+  color: @grey;
+}
+.text-dark-1 {
+  color: @dark-1;
+}
+.text-dark {
+  color: @dark;
+}
+.text-black {
+  color: @black;
+}
+
+.bg-primary {
+  background-color: @primary;
+}
+.bg-white {
+  background-color: @white;
+}
+.bg-light {
+  background-color: @light;
+}
+.bg-grey {
+  background-color: @grey;
+}
+.bg-dark-1 {
+  background-color: @dark-1;
+}
+.bg-dark {
+  background-color: @dark;
+}
+.bg-black {
+  background-color: @black;
+}
+/*
+$colors:{
+  'primary'：#db9c3f,
+  'white'：#fff
+}
+这是用scss循环
+@each $colorkey,$color in $colors {
+  .text-#(#colorkey){
+    color:$color
+  }
+}
+*/
+//text这个就是工具类就是和tailwindcss类似
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+//font size
+//px to rem一个插件(alz+z：进行转换 al+s：定义基本的font-size大小)
+@base-font-size:1rem;
+@xs-size: 0.7692rem;//10[x
+@sm-size:0.9231rem;//12px
+@md-size:1rem;//13px
+@lg-size:1.0769rem;//14px
+@xl-size:1.2308rem;//16px
+.fs-xs {
+  font-size: @xs-size;
+}
+.fs-sm {
+  font-size: @sm-size;
+}
+.fs-md {
+  font-size: @md-size;
+}
+.fs-lg {
+  font-size: @lg-size;
+}
+.fs-xl {
+  font-size: @xl-size;
+}
+
+//flex
+.d-flex {
+  display: flex;
+}
+.flex-colum {
+  flex-direction: column;
+}
+@jc-start:flex-start;
+@jc-end:flex-end;
+@jc-center:center;
+@jc-between:space-between;
+@jc-around:space-around;
+.jc-start {
+  justify-content: @jc-start;
+}
+.jc-end {
+  justify-content: @jc-end;
+}
+.jc-center {
+  justify-content: @jc-center;
+}
+.jc-between {
+  justify-content: @jc-between;
+}
+.jc-around {
+  justify-content: @jc-around;
+}
+
+@ai-start:flex-start;
+@ai-end:flex-end;
+@ai-center:center;
+@ai-stretch:stretch;
+.ai-start {
+  align-items: @ai-start;
+}
+.ai-end {
+  align-items: @ai-end;
+}
+.ai-center {
+  align-items: @ai-center;
+}
+.ai-stretch {
+  //如果项目未设置高度或设为auto，将占满整个容器的高度。
+  align-items: @ai-stretch;
+}
+.flex-1{
+  flex: 1;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+//网站的边距
+@spacing-base-size:1rem;
+
+.m-0 {
+  margin: calc(@spacing-base-size*0);
+}
+.m-1 {
+  margin: calc(@spacing-base-size*0.25);
+}
+.m-2 {
+  margin: calc(@spacing-base-size*0.5);
+}
+.m-3 {
+  margin: calc(@spacing-base-size*1);
+}
+.m-4 {
+  margin: calc(@spacing-base-size*1.5);
+}
+.m-5 {
+  margin: calc(@spacing-base-size*3);
+}
+
+.mx-0 {
+  margin-left: calc(@spacing-base-size*0);
+  margin-right: calc(@spacing-base-size*0);
+}
+.mx-1 {
+  margin-left: calc(@spacing-base-size*0.25);
+  margin-right: calc(@spacing-base-size*0.25);
+}
+.mx-2 {
+  margin-left: calc(@spacing-base-size*0.5);
+  margin-right: calc(@spacing-base-size*0.5);
+}
+.mx-3 {
+  margin-left: calc(@spacing-base-size*1);
+  margin-right: calc(@spacing-base-size*1);
+}
+.mx-4 {
+  margin-left: calc(@spacing-base-size*1.5);
+  margin-right: calc(@spacing-base-size*1.5);
+}
+.mx-5 {
+  margin-left: calc(@spacing-base-size*3);
+  margin-right: calc(@spacing-base-size*3);
+}
+
+.my-0 {
+  margin-top: calc(@spacing-base-size*0);
+  margin-bottom: calc(@spacing-base-size*0);
+}
+.my-1 {
+  margin-top: calc(@spacing-base-size*0.25);
+  margin-bottom: calc(@spacing-base-size*0.25);
+}
+.my-2 {
+  margin-top: calc(@spacing-base-size*0.5);
+  margin-bottom: calc(@spacing-base-size*0.5);
+}
+.my-3 {
+  margin-top: calc(@spacing-base-size*1);
+  margin-bottom: calc(@spacing-base-size*1);
+}
+.my-4 {
+  margin-top: calc(@spacing-base-size*1.5);
+  margin-bottom: calc(@spacing-base-size*1.5);
+}
+.my-5 {
+  margin-top: calc(@spacing-base-size*3);
+  margin-bottom: calc(@spacing-base-size*3);
+}
+
+
+.mt-0 {
+  margin-top: calc(@spacing-base-size*0);
+}
+.mt-1 {
+  margin-top: calc(@spacing-base-size*0.25);
+}
+.mt-2 {
+  margin-top: calc(@spacing-base-size*0.5);
+}
+.mt-3 {
+  margin-top: calc(@spacing-base-size*1);
+}
+.mt-4 {
+  margin-top: calc(@spacing-base-size*1.5);
+}
+.mt-5 {
+  margin-top: calc(@spacing-base-size*3);
+}
+
+.mr-0 {
+  margin-right: calc(@spacing-base-size*0);
+}
+.mr-1 {
+  margin-right: calc(@spacing-base-size*0.25);
+}
+.mr-2 {
+  margin-right: calc(@spacing-base-size*0.5);
+}
+.mr-3 {
+  margin-right: calc(@spacing-base-size*1);
+}
+.mr-4 {
+  margin-right: calc(@spacing-base-size*1.5);
+}
+.mr-5 {
+  margin-right: calc(@spacing-base-size*3);
+}
+
+.mb-0 {
+  margin-bottom: calc(@spacing-base-size*0);
+}
+.mb-1 {
+  margin-bottom: calc(@spacing-base-size*0.25);
+}
+.mb-2 {
+  margin-bottom: calc(@spacing-base-size*0.5);
+}
+.mb-3 {
+  margin-bottom: calc(@spacing-base-size*1);
+}
+.mb-4 {
+  margin-bottom: calc(@spacing-base-size*1.5);
+}
+.mb-5 {
+  margin-bottom: calc(@spacing-base-size*3);
+}
+
+.ml-0 {
+  margin-left: calc(@spacing-base-size*0);
+}
+.ml-1 {
+  margin-left: calc(@spacing-base-size*0.25);
+}
+.ml-2 {
+  margin-left: calc(@spacing-base-size*0.5);
+}
+.ml-3 {
+  margin-left: calc(@spacing-base-size*1);
+}
+.ml-4 {
+  margin-left: calc(@spacing-base-size*1.5);
+}
+.ml-5 {
+  margin-left: calc(@spacing-base-size*3);
+}
+
+
+
+
+.p-0 {
+  padding: calc(@spacing-base-size*0);
+}
+.p-1 {
+  padding: calc(@spacing-base-size*0.25);
+}
+.p-2 {
+  padding: calc(@spacing-base-size*0.5);
+}
+.p-3 {
+  padding: calc(@spacing-base-size*1);
+}
+.p-4 {
+  padding: calc(@spacing-base-size*1.5);
+}
+.p-5 {
+  padding: calc(@spacing-base-size*3);
+}
+
+.px-0 {
+  padding-left: calc(@spacing-base-size*0);
+  padding-right: calc(@spacing-base-size*0);
+}
+.px-1 {
+  padding-left: calc(@spacing-base-size*0.25);
+  padding-right: calc(@spacing-base-size*0.25);
+}
+.px-2 {
+  padding-left: calc(@spacing-base-size*0.5);
+  padding-right: calc(@spacing-base-size*0.5);
+}
+.px-3 {
+  padding-left: calc(@spacing-base-size*1);
+  padding-right: calc(@spacing-base-size*1);
+}
+.px-4 {
+  padding-left: calc(@spacing-base-size*1.5);
+  padding-right: calc(@spacing-base-size*1.5);
+}
+.px-5 {
+  padding-left: calc(@spacing-base-size*3);
+  padding-right: calc(@spacing-base-size*3);
+}
+
+.py-0 {
+  padding-top: calc(@spacing-base-size*0);
+  padding-bottom: calc(@spacing-base-size*0);
+}
+.py-1 {
+  padding-top: calc(@spacing-base-size*0.25);
+  padding-bottom: calc(@spacing-base-size*0.25);
+}
+.py-2 {
+  padding-top: calc(@spacing-base-size*0.5);
+  padding-bottom: calc(@spacing-base-size*0.5);
+}
+.py-3 {
+  padding-top: calc(@spacing-base-size*1);
+  padding-bottom: calc(@spacing-base-size*1);
+}
+.py-4 {
+  padding-top: calc(@spacing-base-size*1.5);
+  padding-bottom: calc(@spacing-base-size*1.5);
+}
+.py-5 {
+  padding-top: calc(@spacing-base-size*3);
+  padding-bottom: calc(@spacing-base-size*3);
+}
+
+.pt-0 {
+  padding-top: calc(@spacing-base-size*0);
+}
+.pt-1 {
+  padding-top: calc(@spacing-base-size*0.25);
+}
+.pt-2 {
+  padding-top: calc(@spacing-base-size*0.5);
+}
+.pt-3 {
+  padding-top: calc(@spacing-base-size*1);
+}
+.pt-4 {
+  padding-top: calc(@spacing-base-size*1.5);
+}
+.pt-5 {
+  padding-top: calc(@spacing-base-size*3);
+}
+
+.pr-0 {
+  padding-right: calc(@spacing-base-size*0);
+}
+.pr-1 {
+  padding-right: calc(@spacing-base-size*0.25);
+}
+.pr-2 {
+  padding-right: calc(@spacing-base-size*0.5);
+}
+.pr-3 {
+  padding-right: calc(@spacing-base-size*1);
+}
+.pr-4 {
+  padding-right: calc(@spacing-base-size*1.5);
+}
+.pr-5 {
+  padding-right: calc(@spacing-base-size*3);
+}
+
+.pb-0 {
+  padding-bottom: calc(@spacing-base-size*0);
+}
+.pb-1 {
+  padding-bottom: calc(@spacing-base-size*0.25);
+}
+.pb-2 {
+  padding-bottom: calc(@spacing-base-size*0.5);
+}
+.pb-3 {
+  padding-bottom: calc(@spacing-base-size*1);
+}
+.pb-4 {
+  padding-bottom: calc(@spacing-base-size*1.5);
+}
+.pb-5 {
+  padding-bottom: calc(@spacing-base-size*3);
+}
+
+.pl-0 {
+  padding-left: calc(@spacing-base-size*0);
+}
+.pl-1 {
+  padding-left: calc(@spacing-base-size*0.25);
+}
+.pl-2 {
+  padding-left: calc(@spacing-base-size*0.5);
+}
+.pl-3 {
+  padding-left: calc(@spacing-base-size*1);
+}
+.pl-4 {
+  padding-left: calc(@spacing-base-size*1.5);
+}
+.pl-5 {
+  padding-left: calc(@spacing-base-size*3);
+}
