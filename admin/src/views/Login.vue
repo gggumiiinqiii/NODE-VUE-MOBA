@@ -29,6 +29,7 @@ export default {
     async login(){
       // 得到token
       const res = await this.$http.post('login',this.model)
+      // 这里的token分为header(头部),payload(载荷),signature(签证)
       localStorage.token = res.data.token
       this.$router.push('/')
       this.$message({
