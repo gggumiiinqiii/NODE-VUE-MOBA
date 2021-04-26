@@ -38,7 +38,7 @@ module.exports = app =>{
       queryOptions.populate = 'parent'
     }
     //使用schema生成一个model,req.body是前端model传过来的数据 ,populate是关联字段，现在前端返回的是一个parent对象
-    const items =  await req.Model.find().setOptions(queryOptions).limit(10)
+    const items =  await req.Model.find().setOptions(queryOptions).limit(30)
     res.send(items)//把找出的内容发送给前端
   })
   //根据id获取姓名
