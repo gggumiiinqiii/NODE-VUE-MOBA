@@ -190,11 +190,9 @@
       async fetchCategories(){
         const res = await this.$http.get(`rest/categories`)
         for(let i=0;i<res.data.length;i++) {
-          if(res.data[i].parent !== undefined) {
-            if(res.data[i].parent._id==='60190b86dcc1600b7c9cfd8d') {
+   
               this.categories.push(res.data[i])
-            }
-          }
+          
         }
        // this.categories = res.data
       },

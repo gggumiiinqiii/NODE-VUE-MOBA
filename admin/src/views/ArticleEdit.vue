@@ -85,10 +85,9 @@
       },
       async fetchCategories(){
         const res = await this.$http.get(`rest/categories`)
+        console.log(res)
         for(let i=0;i<res.data.length;i++) {
-          if(!(res.data[i].parent)){
             this.categories.push(res.data[i])
-          }
         }
       },
       async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
