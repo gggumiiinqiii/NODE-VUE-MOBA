@@ -10,8 +10,10 @@ app.use(express.json())
 app.use('/uploads',express.static(__dirname+'/uploads'))
 // 数据库的连接
 require('./plugins/db.js')(app)
-//路由的连接
+//admin路由的连接
 require('./router/admin/index.js')(app)
+//web路由得连接
+require('./router/web/index')(app)
 
 app.listen(3000,()=>{
   console.log('http://localhost:3000')
