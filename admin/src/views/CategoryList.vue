@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>分类列表</p>
-    <el-table :data="items">
+    <el-table :data="(items||'').slice(pageSize*(pageNo-1),pageSize*pageNo)">
       <el-table-column prop="_id" label="ID" width="230"></el-table-column>
       <el-table-column prop="parent.name" label="上级分类" width="230"></el-table-column>
       <el-table-column prop="name" label="分类名称"></el-table-column>
@@ -12,16 +12,27 @@
         </template>
       </el-table-column>
     </el-table>
+     <el-pagination
+     style="padding:1% 45%"
+      layout="prev, pager, next"
+      :total="items.length"
+      @current-change="changecurrentpage">
+    </el-pagination>
   </div>
 </template>
 <script>
   export default {
     data(){
       return {
-        items:[]
+        items:[],
+        pageSize:10,
+        pageNo:1
       }
     },
     methods:{
+      changecurrentpage(val){
+        this.pageNo = val
+      },
       async fetch() {
         const res = await this.$http.get('rest/categories')
         this.items = res.data

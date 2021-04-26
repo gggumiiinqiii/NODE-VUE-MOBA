@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>文章列表</p>
-    <el-table :data="items">
+    <el-table :data="(items||'').slice(pageSize*(pageNo-1),pageSize*pageNo)">
       <el-table-column prop="_id" label="ID" width="230"></el-table-column>
       <el-table-column prop="title" label="标题" ></el-table-column>
       <el-table-column label="操作" width="200">
@@ -11,16 +11,27 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+     style="padding:1% 45%"
+      layout="prev, pager, next"
+      :total="items.length"
+      @current-change="changecurrentpage">
+    </el-pagination>
   </div>
 </template>
 <script>
   export default {
     data(){
       return {
-        items:[]
+        items:[],
+        pageSize:10,
+        pageNo:1
       }
     },
     methods:{
+      changecurrentpage(val){
+        this.pageNo = val
+      },
       async fetch() {
         const res = await this.$http.get('rest/articles')
         this.items = res.data
