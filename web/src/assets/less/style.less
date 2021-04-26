@@ -1,5 +1,5 @@
 //reset
-
+@import './variables.less';
 *{
   box-sizing: border-box;
   // 取消搜索框和按钮的高亮
@@ -21,16 +21,21 @@ a {
 }
 
 
-//定义颜色colors(Maps)映射
-@primary: #de9e3f;
-@white:#fff;
-@light:#f9f9f9;
-@grey:#999;
-@dark-1:#343440;
-@dark:#222;
-@black:#000;
+// //定义颜色colors(Maps)映射
+// @primary: #de9e3f;
+// @info:#4b67af;
+// @white:#fff;
+// @light:#f9f9f9;
+// @grey:#999;
+// @grey-1:#666;
+// @dark-1:#343440;
+// @dark:#222;
+// @black:#000;
 .text-primary {
   color: @primary;
+}
+.text-info {
+  color: @info;
 }
 .text-white {
   color: @white;
@@ -38,8 +43,14 @@ a {
 .text-light {
   color: @light;
 }
+.text-light-1 {
+  color: @light-1;
+}
 .text-grey {
   color: @grey;
+}
+.text-grey-1 {
+  color: @grey-1;
 }
 .text-dark-1 {
   color: @dark-1;
@@ -51,8 +62,19 @@ a {
   color: @black;
 }
 
+.text-ellipsis {
+  display: inline-block;
+  white-space: nowrap; 
+  width: 100%; 
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
 .bg-primary {
   background-color: @primary;
+}
+.bg-info {
+  background-color: @info;
 }
 .bg-white {
   background-color: @white;
@@ -60,7 +82,13 @@ a {
 .bg-light {
   background-color: @light;
 }
+.bg-light-1 {
+  background-color: @light-1;
+}
 .bg-grey {
+  background-color: @grey;
+}
+.bg-grey-1 {
   background-color: @grey;
 }
 .bg-dark-1 {
@@ -86,23 +114,26 @@ $colors:{
 */
 //text这个就是工具类就是和tailwindcss类似
 .text-left {
-  text-align: left;
+  text-align: left !important;
 }
 .text-center {
-  text-align: center;
+  text-align: center !important;
 }
 .text-right {
-  text-align: right;
+  text-align: right !important;
 }
 
 //font size
 //px to rem一个插件(alz+z：进行转换 al+s：定义基本的font-size大小)
-@base-font-size:1rem;
-@xs-size: 0.7692rem;//10[x
-@sm-size:0.9231rem;//12px
-@md-size:1rem;//13px
-@lg-size:1.0769rem;//14px
-@xl-size:1.2308rem;//16px
+// @base-font-size:1rem;
+// @xs-size: 0.7692rem;//10[x
+// @sm-size:0.9231rem;//12px
+// @md-size:1rem;//13px
+// @lg-size:1.0769rem;//14px
+// @xl-size:1.2308rem;//16px
+.fs-xxs {
+  font-size: @xss-size;
+}
 .fs-xs {
   font-size: @xs-size;
 }
@@ -118,6 +149,14 @@ $colors:{
 .fs-xl {
   font-size: @xl-size;
 }
+//width,height
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+
 
 //flex
 .d-flex {
@@ -126,11 +165,14 @@ $colors:{
 .flex-colum {
   flex-direction: column;
 }
-@jc-start:flex-start;
-@jc-end:flex-end;
-@jc-center:center;
-@jc-between:space-between;
-@jc-around:space-around;
+.flex-wrap {
+  flex-wrap: wrap;
+}
+// @jc-start:flex-start;
+// @jc-end:flex-end;
+// @jc-center:center;
+// @jc-between:space-between;
+// @jc-around:space-around;
 .jc-start {
   justify-content: @jc-start;
 }
@@ -147,10 +189,10 @@ $colors:{
   justify-content: @jc-around;
 }
 
-@ai-start:flex-start;
-@ai-end:flex-end;
-@ai-center:center;
-@ai-stretch:stretch;
+// @ai-start:flex-start;
+// @ai-end:flex-end;
+// @ai-center:center;
+// @ai-stretch:stretch;
 .ai-start {
   align-items: @ai-start;
 }
@@ -465,4 +507,56 @@ $colors:{
 }
 .pl-5 {
   padding-left: calc(@spacing-base-size*3);
+}
+
+
+.btn {
+  border: none;
+  border-radius: 0.1538rem;//2px
+  font-size: @sm-size;//12px
+  padding: 0.2rem 0.6rem;
+}
+
+.nav {
+  display: flex;
+  .nav-item {
+    border-bottom: 3px solid transparent;
+    padding-bottom: 0.2rem;
+    // &表示紧跟身后不是同级关系
+    &.active {
+      color: @primary;
+      border-bottom: 3px solid @primary;
+    }
+  }
+  // 首页上面的导航
+  &.nav-inverse {
+    .nav-item {
+      color: @white;
+      &.active {
+        border-bottom: 3px solid @white;
+      }
+    }
+  }
+}
+
+//精灵图片,可以使用精灵牛的一个网站来进行选取position位置
+.sprite {
+  background: url(../images/index.png) no-repeat 0 0;
+  background-size: 28.8462rem;
+  display: inline-block;
+  &.sprite-news {
+    background-position: 63.38% 16.25%;
+    width: 1.7692rem;
+    height: 1.5385rem;
+  }
+  &.sprite-story {
+    background-position: 90.483% 15.614%;
+    width: 1.7692rem;
+    height: 1.5385rem;
+  }
+  &.sprite-arrow {
+    background-position:  38.577% 52.076%;;
+    width: 0.7692rem;
+    height: 0.7692rem;
+  }
 }

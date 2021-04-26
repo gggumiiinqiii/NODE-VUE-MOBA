@@ -33,4 +33,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 1. 新闻详情页
 1. 英雄详情页
 
+vue awesome swiper版本不一样，会导致css引用不到的问题，还有不显示分页小圆点的问题，切换版本到3.1.3就好了。不知道为啥更新了连这个都变了，心累。浪费半小时时间。
 ## 发布和部署
