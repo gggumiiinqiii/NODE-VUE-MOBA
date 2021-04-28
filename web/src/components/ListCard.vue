@@ -8,7 +8,8 @@
           </div>
         </div>
         <div class="pt-3">
-          <swiper ref="list"
+          <!-- autoHeight：true高度自己适应 -->
+          <swiper ref="list" :options="{autoHeight:true}"
           @slide-change="()=> active=$refs.list.swiper.realIndex">
             <swiper-slide v-for="(category,i) in categories" :key="i">
               <!-- 作用域 -->
@@ -40,9 +41,6 @@ export default {
       required:true
     }
   },
- mounted(){
-   console.log(this.active)
- },
  methods:{
    changeactive(i){
      this.$refs.list.swiper.slideTo(i)
@@ -51,6 +49,6 @@ export default {
 }
 </script>
 
-<style>
+<style >
 
 </style>
