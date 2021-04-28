@@ -3,7 +3,8 @@ const Category = require('./Category')
 
 const schema = new mongoose.Schema({
   name:{type:String},
-  avator:{type:String},
+  avatar:{type:String},
+  banner:{type:String},
   title:{type:String},
   // 一个英雄关联多个分类
   categories:[{type:mongoose.SchemaTypes.ObjectId,ref:'Category'}],
@@ -16,6 +17,8 @@ const schema = new mongoose.Schema({
   skills:[{
     icon:{type:String},
     name:{type:String},
+    delay:{type:String},
+    cost:{type:String},
     description:{type:String},
     tips:{type:String}
   }],
@@ -36,4 +39,4 @@ const schema = new mongoose.Schema({
   }]
 })
 
-module.exports = mongoose.model('Hero',schema)
+module.exports = mongoose.model('Hero',schema,'heroes')
