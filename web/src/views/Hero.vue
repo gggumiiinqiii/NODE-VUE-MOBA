@@ -35,15 +35,18 @@
     <div>
       <div class="bg-white px-3">
         <div class="nav d-flex jc-around pt-3 pb-2" style="border-bottom:1px solid #d4d9de">
-          <div class="nav-item active">
-            <div class="nav-link">英雄初识</div>
-          </div>
-          <div class="nav-item">
-            <div class="nav-link">进阶攻略</div>
+          <div class="nav-item " :class="{active:active===i}"
+          v-for="(item,i) in categories" :key="i"
+          @click="changeactive(i)"
+          >
+            <div class="nav-link">{{item.name}}</div>
           </div>
         </div>
       </div>
-      <swiper>
+      <!-- ref被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的$refs对象上。
+          如果在普通的DOM元素上使用,引用指向的就是DOM元素;如果用在子组件上,引用就指向组件实例 -->
+      <swiper ref="list" :options="{autoHeight:true}"
+      @slide-change="()=>active=$refs.list.swiper.realIndex">
         <swiper-slide>
           <div>
             <div class="p-3 bg-white" style="border-bottom:1px solid #d4d9de">
@@ -69,6 +72,7 @@
                   :key="item.name" 
                   alt="">
                 </div>
+                <!-- 切换通过computed来实现,currentSkillIndex变化,currentSKill里面的内容也相应的变化 -->
                 <div v-if="currentSkill">
                   <div class="d-flex pt-3 pb-3">
                     <h3 class="m-0">{{currentSkill.name}}</h3>
@@ -124,6 +128,32 @@
             </m-card>
           </div>
         </swiper-slide>
+        <swiper-slide>
+         <div class="bg-white">
+           <div class="mx-3">
+             <div class="d-flex py-3" style="border-bottom:1px solid #d4d9de"
+             v-for="n in 5" :key="n">
+              <div>
+                <img style="width:8.9231rem"
+                  src="http://shp.qpic.cn/cfwebcap/759707493/2ad75193983b87102711a650dede3866/0/?width=230&height=140" alt="">
+              </div>
+              <!-- flex-column让主轴变成纵向的 justify-content:space-between沿着主轴方向的上下排列 -->
+              <div class="d-flex flex-column jc-between w-100">
+                <div class="px-3 text-dark fs-lg" style="font-weight:500">
+                  [快速上手英雄技能]赵云
+                </div>
+                <div class="d-flex jc-between text-grey px-2">
+                  <div>1483.4万</div>
+                  <div>2017-12-15</div>
+                </div>
+              </div>
+            </div>
+           </div>
+         </div>
+         <div class="text-grey text-center pt-3 fs-xs">
+           全部加载完成
+         </div>
+        </swiper-slide>
       </swiper>
     </div>
   </div>
@@ -139,7 +169,13 @@ export default {
   data(){
     return {
       model:null,
-      currentSkillIndex:0
+      currentSkillIndex:0,
+      categories:[{
+        'name':'英雄初识'
+      },{
+        'name':'进阶攻略'
+      }],
+      active:0
     }
   },
   methods:{
@@ -147,6 +183,9 @@ export default {
       const res = await this.$http.get(`heroes/${this.id}`)
       console.log(res.data)
       this.model = res.data
+    },
+    changeactive(i){
+      this.$refs.list.swiper.slideTo(i)
     }
   },
   computed:{
