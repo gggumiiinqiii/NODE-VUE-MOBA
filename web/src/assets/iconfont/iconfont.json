@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "902008",
+      "name": "back",
+      "font_class": "back",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
       "icon_id": "694313",
       "name": "攻略",
       "font_class": "raider",

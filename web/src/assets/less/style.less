@@ -20,6 +20,9 @@ a {
   color: #999;
 }
 
+p {
+  line-height: 1.5rem;
+}
 
 // //定义颜色colors(Maps)映射
 // @primary: #de9e3f;
@@ -36,6 +39,9 @@ a {
 }
 .text-info {
   color: @info;
+}
+.text-blue {
+  color: @blue;
 }
 .text-white {
   color: @white;
@@ -82,6 +88,15 @@ a {
 .bg-light {
   background-color: @light;
 }
+.bg-blue-1 {
+  background-color: @blue-1;
+}
+.bg-blue {
+  background-color: @blue;
+}
+.bg-danger {
+  background-color: @danger;
+}
 .bg-light-1 {
   background-color: @light-1;
 }
@@ -90,6 +105,9 @@ a {
 }
 .bg-grey-1 {
   background-color: @grey;
+}
+.bg-darg-2 {
+  background-color: @dark-2;
 }
 .bg-dark-1 {
   background-color: @dark-1;
@@ -162,7 +180,7 @@ $colors:{
 .d-flex {
   display: flex;
 }
-.flex-colum {
+.flex-column {
   flex-direction: column;
 }
 .flex-wrap {
@@ -515,6 +533,21 @@ $colors:{
   border-radius: 0.1538rem;//2px
   font-size: @sm-size;//12px
   padding: 0.2rem 0.6rem;
+  &.btn-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      color: @primary;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border:1px solid rgb(236, 238, 240);
+    background:rgb(252, 252, 252)
+  }
 }
 
 .nav {
