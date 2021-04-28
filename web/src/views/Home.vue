@@ -67,31 +67,34 @@
         </div>
     </m-card> -->
 
-    <m-list-card icon="Menu" title="新闻资讯" :categories="newCates">
+    <m-list-card icon="Menu" title="新闻资讯" :categories="newCats">
       <template #items="{category}">
-        <div class="py-2 fs-lg d-flex" v-for="(items,i) in category.newsList" :key="i">
+        <router-link
+        tag="div"
+        :to="`/articles/${items._id}`" 
+        class="py-2 fs-lg d-flex" v-for="(items,i) in category.newsList" :key="i">
           <span class="text-info">{{items.categoryname}}</span>
           <span class="px-2">|</span>
           <span class="flex-1 text-dark text-ellipsis pr-2">{{items.title}}</span>
           <span class="time text-grey">{{items.createdAt|date}}</span>
-        </div>
+        </router-link>
       </template>
     </m-list-card>
-    <m-card icon="-superhero" title="英雄列表">
-
-    </m-card>
-    <m-card icon="shipin-" title="精彩视频">
-
-    </m-card>
-    <m-card icon="raider" title="图文攻略">
-
-    </m-card>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-    <p>1</p>
-
-    <p>1</p>
+    <m-list-card icon="-superhero" title="英雄列表" :categories="heroCats">
+      <template #items="{category}">
+        <div class="d-flex flex-wrap" style="margin:0rem -0.5rem">
+          <router-link 
+          tag="div"
+          :to="`/heroes/${items._id}`"
+          class="p-2 text-center" v-for="(items,i) in category.heroesList" :key="i"
+          style="width:20%">
+            <img :src="items.avatar" alt="" class="w-100">
+            <div>{{items.name}}</div>
+          </router-link>
+        </div>
+        
+      </template>
+    </m-list-card>
     <!-- end of nav-icons -->
     <!-- <i class="iconfont icon-Menu fs-xl"></i>
     <i class="iconfont icon--superhero"></i> -->
@@ -115,7 +118,8 @@ export default {
           el: '.pagination-home'
         }
       },
-      newCates:[]
+      newCats:[],
+      heroCats:[]
     }
   },
   computed:{
@@ -127,11 +131,16 @@ export default {
   methods:{
     async fetchNewsCats(){
       const res = await this.$http.get('news/list')
-      this.newCates = res.data
+      this.newCats = res.data
+    },
+    async fetchHeroCats(){
+      const res = await this.$http.get('heroes/list')
+      this.heroCats = res.data
     }
   },
   created(){
     this.fetchNewsCats()
+    this.fetchHeroCats()
   }
 }
 </script>
