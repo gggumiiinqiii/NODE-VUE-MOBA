@@ -15,7 +15,7 @@
     <!-- end of swiper -->
     <div class="nav-icons bg-white mt-3 d-flex flex-wrap text-center pt-3 text-dark-1">
       <!-- 大的容器内部padding-top了一个3,内部元素maring-bottom了一个3 -->
-      <div class="d-flex flex-wrap">
+      <div class="d-flex flex-wrap" :class="{activeclose :active===1}" ref="content">
           <div class="nav-item mb-3" 
             v-for="n in 10" :key="n">
             <i class="sprite sprite-news"></i>
@@ -31,8 +31,8 @@
           </div>
       </div>
       <div class="w-100 bg-light py-2 fs-sm">
-        <i class="sprite sprite-arrow mr-1"></i>
-        <span>收起</span>
+        <i class="sprite sprite-arrow mr-1" :class="{trans:active===1}"></i>
+        <span @click="change()">{{openorclocse}}</span>
       </div>
     </div>
     <!-- <m-card icon="Menu" title="新闻资讯11">
@@ -119,11 +119,18 @@ export default {
         }
       },
       newCats:[],
-      heroCats:[]
+      heroCats:[],
+      active:1
     }
   },
   computed:{
-   
+    openorclocse(){
+      if(this.active===1){
+        return '展开'
+      }else {
+        return '关闭'
+      }
+    }
   },
   created(){
 
@@ -136,6 +143,15 @@ export default {
     async fetchHeroCats(){
       const res = await this.$http.get('heroes/list')
       this.heroCats = res.data
+    },
+    change(){
+      if(this.active===1){
+        this.active=0
+        
+      }else{
+        this.active=1;
+      
+      }
     }
   },
   created(){
@@ -167,6 +183,13 @@ export default {
 .nav-icons {
   border-top: 1px solid @border-color;
   border-bottom: 1px solid @border-color;
+  .activeclose {
+    height: 60px;
+    overflow: hidden;
+  }
+  .trans {
+    transform: rotate(180deg);
+  }
   .nav-item {
     width: 25%;
     border-right: 1px solid @border-color;
